@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card shadow p-4">
+      <h2 class="text-success">Order Confirmation</h2>
+      <p>Thank you for your order! Your order has been successfully placed.</p>
+
+      <h5>Order Details</h5>
+      <p><strong>Order ID:</strong> <%= order.order_id %></p>
+      <p><strong>Order Date:</strong> <%= order.order_date.toLocaleString() %></p>
+      <p><strong>Total Amount:</strong> ₹<%= totalAmount.toFixed(2) %></p>
+
+      <h5 class="mt-4">Items in Your Order:</h5>
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price per Item</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% items.forEach(item => { %>
+            <tr>
+              <td><%= item.product_id %></td>
+              <td><%= item.name %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.price.toFixed(2) %></td>
+              <td><%= (item.price * item.quantity).toFixed(2) %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <a href="/dashboard" class="btn btn-primary">← Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>  
